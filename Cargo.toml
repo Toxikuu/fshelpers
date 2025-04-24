@@ -1,0 +1,8 @@
+[package]
+name = "fshelpers"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+permitit = "0.1.0"
+tracing = "0.1.41"
