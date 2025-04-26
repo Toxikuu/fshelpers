@@ -105,6 +105,21 @@ where
     }
 }
 
+/// # Removes a path, recursively if needed.
+/// Removes a symlink, file, or directory, deciding which internally.
+/// The only difference between `rm()` and this is recursion.
+pub fn rmr<P>(path: P) -> io::Result<()>
+where
+    P: AsRef<Path>,
+{
+    let p = path.as_ref();
+    if p.is_symlink() || p.is_file() {
+        rmf(path)
+    } else {
+        rmdir_r(path)
+    }
+}
+
 /// # Check whether a path is a directory.
 /// Follows symlinks.
 pub fn is_dir<P>(path: P) -> io::Result<bool>
